@@ -1,0 +1,51 @@
+version: "3.7"
+# convenient compose file for Self-hosted LiveSync.
+# Initial Author: @arminus
+# Modified      : @vrtmrz
+
+services:
+    caddy:
+        image: lucaslorentz/caddy-docker-proxy:ci-alpine
+        container_name: caddy
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            - CADDY_INGRESS_NETWORKS=caddy
+        networks:
+            - caddy
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./data/caddy:/data
+        restart: always
+
+    couchserver:
+        image: couchdb
+        ports:
+            - "5984:5984"
+        environment:
+            - COUCHDB_USER=${COUCHDB_USER}
+            - COUCHDB_PASSWORD=${COUCHDB_PW}
+        volumes:
+            # The files' owner will be id:5984 when you launch the image.
+            # Because CouchDB writes on-the-fly configurations into local.ini.
+            # So when you want to perform git pull or change something, you have to change owners back.
+            - ./data/couchdb:/opt/couchdb/data
+            - ./conf/local.ini:/opt/couchdb/etc/local.ini
+        networks:
+            - caddy
+        labels:
+            caddy: ${COUCHDB_SERVER}
+            caddy.header.-Server: ""
+            # To avoid being crawled by Malicious Web Crawlers, 
+            # - Make index page to be forbidden.
+            # - Set CouchDB into subdirectory
+            caddy.handle_path: /*
+            caddy.handle_path.0_respond: "\"\" 403"
+            caddy.handle_path_1: /e=_/* 
+            caddy.handle_path_1.0_reverse_proxy: "{{upstreams 5984}}"
+        restart: always
+
+networks:
+  caddy:
+    external: true

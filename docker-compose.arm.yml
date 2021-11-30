@@ -1,0 +1,5 @@
+version: "3.7"
+# I use Oracle Cloud Infrastructure's arm instance.
+services:
+    caddy:
+        image: lucaslorentz/caddy-docker-proxy:ci-alpine-arm32v6

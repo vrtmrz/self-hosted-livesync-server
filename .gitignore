@@ -1,0 +1,3 @@
+data/caddy/**
+data/couchdb/**
+!.gitempty
