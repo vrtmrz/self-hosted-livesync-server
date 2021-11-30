@@ -1,5 +1,10 @@
 # CouchDB with Let's encrypt's SSL certificate for Self-hosted LiveSync.
 
+## What is this
+
+- CouchDB Server which configured about CORS for Obsidian and Self-hosted LiveSync.
+- Automatically set up SSL Certificates by Let's Encrypt (With Caddy). 
+
 ## Requirements 
 
 - Internet-accessible webserver
