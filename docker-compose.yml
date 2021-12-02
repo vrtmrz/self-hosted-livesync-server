@@ -36,12 +36,12 @@ services:
             - caddy
         labels:
             caddy: ${COUCHDB_SERVER}
-            caddy.header.-Server: ""
             # To avoid being crawled by Malicious Web Crawlers, 
             # - Make index page to be forbidden.
             # - Set CouchDB into subdirectory
             caddy.handle_path: /*
             caddy.handle_path.0_respond: "\"\" 403"
+            caddy.handle_path.0_header.-Server: ""
             caddy.handle_path_1: /e=_/* 
             caddy.handle_path_1.0_reverse_proxy: "{{upstreams 5984}}"
         restart: always
