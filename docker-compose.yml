@@ -20,7 +20,7 @@ services:
         restart: always
 
     couchserver:
-        image: couchdb
+        image: couchdb:3.1.2
         ports:
             - "5984:5984"
         environment:
