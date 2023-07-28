@@ -24,7 +24,7 @@
     1. `caddy.handle_path_1: /e=_/*` on `docker-compose.yml`  
 You have to change this `e=_` to something your favorite secret word.
     2. `authentication_redirect = /e=_/_utils/session.html` on `conf/local.ini`  
-change `e=_` too, as same as you changed on 2.1..
+change `e=_` too, as same as you changed on 3.1..
 4. Set environment variables.   
 
 | name           | value                               | example        |
