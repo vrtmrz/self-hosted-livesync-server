@@ -3,7 +3,8 @@
 ## What is this
 
 - CouchDB Server which configured about CORS for Obsidian and Self-hosted LiveSync.
-- Automatically set up SSL Certificates by Let's Encrypt (With Caddy). 
+- Automatically set up SSL Certificates by Let's Encrypt (With Caddy).
+- If you do not have any domains, [self-hosted-livesync-server-tailscale](https://github.com/vrtmrz/self-hosted-livesync-server-tailscale) is available!
 
 ## Requirements 
 
