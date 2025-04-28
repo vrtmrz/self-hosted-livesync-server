@@ -32,6 +32,7 @@ services:
             # So when you want to perform git pull or change something, you have to change owners back.
             - ./data/couchdb:/opt/couchdb/data
             - ./conf/local.ini:/opt/couchdb/etc/local.ini
+            - ./local.d:/opt/couchdb/etc/local.d
         networks:
             - caddy
         labels:
